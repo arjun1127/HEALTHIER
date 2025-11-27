@@ -150,14 +150,23 @@ User Inputs  ───────────► │ Dashboards: Food,       �
 ```
 
 ## Setup 
+### Backend 
 
 ```
-mkdir life-os && cd life-os
+git clone https://github.com/arjun1127/HEALTHIER
+cd life-os
 npm init -y
 
 # backend dependencies
-npm install express mongoose bcryptjs jsonwebtoken dotenv cors
+npm install
 
 # dev
 npm install -D nodemon
 ```
+### Frontend 
+```
+cd UI-os/my-app
+npm install
+
+```
+
