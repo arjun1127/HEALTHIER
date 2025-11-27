@@ -8,6 +8,6 @@ const ActivityLogSchema = new mongoose.Schema({
   caloriesBurned: Number,
   intensity: { type: String, enum: ['low','medium','high'], default: 'medium' },
   createdAt: { type: Date, default: Date.now }
-});
+},{ timestamps: true });
 
 module.exports = mongoose.model('ActivityLog', ActivityLogSchema);

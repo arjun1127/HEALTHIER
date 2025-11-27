@@ -1,3 +1,66 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+
+/* base background & noise overlay */
+:root {
+  --midnight: #0B0C15;
+}
+
+/* body background / subtle gradient */
+body {
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.08), transparent 10%),
+              radial-gradient(900px 400px at 90% 90%, rgba(34,211,238,0.045), transparent 10%),
+              var(--midnight);
+  background-color: var(--midnight);
+  color: #F8FAFC;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-attachment: fixed;
+}
+
+/* subtle noise overlay across entire app */
+.app-noise {
+  background-image: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,0.01) 0, transparent 30%),
+                    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='t'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23t)' opacity='0.03' /></svg>");
+  background-blend-mode: overlay;
+}
+
+/* gradient border helper (wrap outer box with .gradient-border) */
+.gradient-border {
+  padding: 1px;
+  border-radius: 14px;
+  background: linear-gradient(90deg, #7C3AED, #C084FC, #22D3EE);
+}
+
+/* glass card inner */
+.glass {
+  border-radius: 12px;
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 6px 24px rgba(2,4,8,0.6);
+}
+
+/* text gradient utility example */
+.text-gradient {
+  background: linear-gradient(90deg,#fff,#f8faff,#94a3b8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* small helper for spotlight glow overlay inside card */
+.card-spotlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: screen; /* adds glow effect */
+  opacity: 0.9;
+}
+
+/* small responsive bento grid */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.25rem;
+}

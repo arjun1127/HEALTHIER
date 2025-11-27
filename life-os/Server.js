@@ -16,6 +16,7 @@ const expenseRoutes = require('./routes/Expense');
 const sleepRoutes = require('./routes/Sleep');
 const activityRoutes = require('./routes/Activity');
 const preferenceRoutes = require('./routes/Preference');
+const dashboardRoutes =require('./routes/dashboardSummary');
 
 const app = express();
 
@@ -34,6 +35,7 @@ app.use('/api/expense', expenseRoutes);
 app.use('/api/sleep', sleepRoutes);
 app.use('/api/activity', activityRoutes);
 app.use('/api/preferences', preferenceRoutes);
+app.use('/api/dashboard', dashboardRoutes);  
 
 // ---- 404 HANDLER ----
 app.use(notFound);

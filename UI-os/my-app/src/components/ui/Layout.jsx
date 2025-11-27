@@ -1,10 +1,7 @@
-// src/components/ui/Layout.jsx
-import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 export default function Layout() {
-  const [open, setOpen] = useState(true);
   const { logout, user } = useAuth();
   const navigate = useNavigate();
 
@@ -14,77 +11,45 @@ export default function Layout() {
   }
 
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-[#0B0C15] text-white app-noise">
+      <div className="max-w-7xl mx-auto px-6 py-10">
 
-      {/* SIDEBAR */}
-      <aside
-        className={`bg-white shadow-lg h-screen p-5 transition-all duration-300
-        ${open ? "w-64" : "w-20"}`}
-      >
-        <div className="flex items-center justify-between mb-6">
-          <h2 className={`font-bold text-xl transition-all ${open ? "opacity-100" : "opacity-0"}`}>
-            HealthyLife AI
-          </h2>
+        {/* HEADER */}
+        <header className="flex flex-wrap justify-between items-center mb-10">
+          <div>
+            <h1 className="text-3xl font-semibold">
+              HealthyLife{" "}
+              
+            </h1>
+            <p className="text-slate-400 text-sm mt-1">
+              Welcome back, {user?.name || "User"} 👋
+            </p>
+          </div>
 
-          <button
-            onClick={() => setOpen(!open)}
-            className="text-gray-500 hover:text-black"
-          >
-            {open ? "<<" : ">>"}
-          </button>
-        </div>
+          <div className="flex items-center gap-4 mt-4 sm:mt-0">
+            <button
+              onClick={() => navigate("/profile")}
+              className="glass px-4 py-2 text-sm rounded-lg border border-white/10"
+            >
+              Profile
+            </button>
 
-        <nav className="space-y-3">
-          <MenuItem to="/dashboard" label="Dashboard" open={open} />
-          <MenuItem to="/food" label="Food" open={open} />
-          <MenuItem to="/expense" label="Expenses" open={open} />
-          <MenuItem to="/sleep" label="Sleep" open={open} />
-          <MenuItem to="/activity" label="Activity" open={open} />
-          <MenuItem to="/preferences" label="Preferences" open={open} />
-        </nav>
-      </aside>
-
-      {/* MAIN CONTENT AREA */}
-      <div className="flex-1 flex flex-col">
-
-        {/* NAVBAR */}
-        <header className="bg-white shadow px-6 py-4 flex justify-between items-center">
-
-          <p className="font-medium text-gray-600">
-            Welcome, {user?.name || "User"} 👋
-          </p>
-
-          <button
-            onClick={handleLogout}
-            className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
-          >
-            Logout
-          </button>
+            <div className="gradient-border p-1px rounded-lg">
+              <button
+                onClick={handleLogout}
+                className="glass px-4 py-2 text-sm rounded-lg"
+              >
+                Logout
+              </button>
+            </div>
+          </div>
         </header>
 
-        {/* PAGE CONTENT */}
-        <main className="p-6">
+        <main>
           <Outlet />
         </main>
+
       </div>
     </div>
-  );
-}
-
-/* Sidebar item component */
-function MenuItem({ to, label, open }) {
-  return (
-    <NavLink
-      to={to}
-      className={({ isActive }) =>
-        `flex items-center px-4 py-2 rounded-lg font-medium transition 
-        ${isActive ? "bg-blue-600 text-white" : "text-gray-700 hover:bg-gray-200"}
-      `
-      }
-    >
-      <span className={`${open ? "inline-block" : "hidden"} ml-2`}>
-        {label}
-      </span>
-    </NavLink>
   );
 }

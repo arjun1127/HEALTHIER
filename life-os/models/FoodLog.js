@@ -12,12 +12,13 @@ const FoodLogSchema = new mongoose.Schema({
         carbs: Number,
         fat: Number
       },
-      note: String
+      note: String,
+     
     }
   ],
   totalCalories: { type: Number, default: 0 },
   mealType: { type: String, enum: ['breakfast','lunch','dinner','snack'], default: 'dinner' },
   createdAt: { type: Date, default: Date.now }
-});
+},{ timestamps: true});
 
 module.exports = mongoose.model('FoodLog', FoodLogSchema);

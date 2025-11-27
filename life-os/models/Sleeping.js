@@ -7,6 +7,6 @@ const SleepLogSchema = new mongoose.Schema({
   durationMinutes: Number,
   qualityScore: Number, // 0-100 calculated later
   note: String
-});
+},{ timestamps: true });
 
 module.exports = mongoose.model('SleepLog', SleepLogSchema);

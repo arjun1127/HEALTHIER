@@ -8,6 +8,6 @@ const ExpenseLogSchema = new mongoose.Schema({
   vendor: { type: String },
   note: { type: String },
   date: { type: Date, default: Date.now }
-});
+},{ timestamps: true });
 
 module.exports = mongoose.model('ExpenseLog', ExpenseLogSchema);

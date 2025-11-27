@@ -1,4 +1,3 @@
-// src/api/preference.js
 import api from "./axios";
 
 export async function upsertPreference(payload) {
